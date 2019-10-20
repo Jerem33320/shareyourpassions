@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+
+    {% block navbar %}
+
+        {% include 'navbar.html.twig' %}
+
+    {% endblock %}
+
+
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid home-container animsition">
+        <div class="triangle-bottom-right"></div>
+        <div class="triangle-top-left"></div>
+        <div class="triangle-middle"></div>
+        <div class="triangle-middle-two"></div>
+        <div class="triangle-middle-three"></div>
+        <div class="triangle-small"></div>
+        <div class="home animsition-link"
+             {#data-animsition-out-class="fade-out-right"
+             data-animsition-out-duration="1000"#}>
+            <h1>Bienvenue sur</h1>
+            <h1><strong>SHARE YOUR PASSIONS</strong>!</h1>
+            <p>Partages, échanges, conseils et éclates toi avec les autres.</p>
+            <div class="d-flex justify-content-center">
+                <a href="{{ url('post_list') }}" class="btn btn-outline-danger">
+                Accèder aux Passions
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

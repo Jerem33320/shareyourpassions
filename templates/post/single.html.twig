@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post #{{ post.id }}{% endblock %}
+
+{% block header %}
+
+    {% block navbar %}
+
+        {% include 'navbar.html.twig' %}
+
+    {% endblock %}
+
+    <div class="jumbotron pad-btm">
+        <div class="container">
+            {% block headerContent %}
+                <h1> Share Your Passions</h1>
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                {% include 'post/card.html.twig' %}
+            </div>
+
+            <div class="col-4">
+                {% if app.user %}
+                    {% include 'comment/form.html.twig' %}
+                {% else %}
+                    Pour pouvoir laisser un commentaire, veuillez vous connecter.
+                {% endif %}
+            </div>
+
+            <div class="col-8">
+                <ul>
+                    {% for comment in post.comments %}
+                        <li>
+                            {% include 'comment/card.html.twig' %}
+                        </li>
+                    {% else %}
+                        <li>
+                            <div class="card space-upbot-comment-card">
+                                <div class="card-body">
+                                    <p class="card-text" style="color: orangered">Soyez le premier à commenter</p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

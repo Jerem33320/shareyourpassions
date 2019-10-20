@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block header %}
+
+    {% block navbar %}
+
+        {% include 'navbar.html.twig' %}
+
+    {% endblock %}
+
+    {#<div class="jumbotron">
+        <div class="container">
+            {% block headerContent %}
+                <h1> Share Your Passions</h1>
+            {%  endblock %}
+        </div>
+    </div>#}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid profil-container animsition">
+        <div class="triangle-bottom-right"></div>
+        <div class="triangle-top-left"></div>
+        <div class="triangle-middle"></div>
+        <div class="triangle-middle-two"></div>
+        <div class="triangle-middle-three"></div>
+        <div class="triangle-small"></div>
+
+        <div class="profil-box">
+            <img class="profil-pic" src="{{ app.user.avatar is defined ? app.user.avatar : '' }}" />
+            <h1>Pseudo: {{ app.user.username }}</h1>
+            <h4>Email: {{ app.user.email }}</h4>
+            <h4>DDN: {{ app.user.birth|date('Y-m-d') }}</h4>
+        </div>
+
+        <div class="profil-info">
+            Afficher posts et autres infos concernant le profil:
+            <ul>
+                {% for comment in app.user.comments %}
+                    <li>
+                        {% include 'comment/card.html.twig' %}
+                    </li>
+                {% else %}
+                    <li>
+                        <div class="card space-upbot-comment-card">
+                            <div class="card-body">
+                                <p class="card-text" style="color: orangered">Vous n'avez jamais laisser de commentaires.</p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+
+{% endblock %}

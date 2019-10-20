@@ -1,0 +1,32 @@
+{% from '_macros/field-has_error.html.twig' import hasError %}
+
+{% if action is not defined %}
+    {% set action  = path('post_create') %}
+{% endif %}
+
+{{ form_start(newpost, { 'action': action , 'attr': { 'class': 'form-size'}}) }}
+
+<div class="card text-center form-card">
+    <div class="card-header">
+        Créer une publication
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            {{ form_widget(newpost.title, {'attr': { 'placeholder': 'Titre', 'class': 'form-control ' ~ hasError(newpost.title) }}) }}
+        </h5>
+        <p class="card-text">
+            {{ form_widget(newpost.content, {'attr': { 'placeholder': 'Exprimez-vous', 'class': 'vert-align form-control ' ~ hasError(newpost.content) }}) }}
+        </p>
+        <p class="card-text">
+            {{ form_widget(newpost.photo, {'attr': { 'class': 'vert-align form-control ' ~ hasError(newpost.photo) }}) }}
+        </p>
+        <a href="#" class="btn">
+            {{ form_widget(newpost.submit, { 'attr': { 'class' : 'btn-form form-control'}}) }}
+        </a>
+    </div>
+    {#<div class="card-footer text-muted">
+        2 days ago
+    </div>#}
+</div>
+
+{{ form_end(newpost) }}

@@ -1,0 +1,18 @@
+{% from '_macros/field-has_error.html.twig' import hasError %}
+
+
+{{ form_start(comment_form, { 'action': path('comment_create', { 'postId': post.id }) }) }}
+
+<div class="form-group">
+    {{ form_widget(comment_form.content, {'attr': { 'class': 'form-control ' ~ hasError(comment_form.content) }}) }}
+
+    <div class="text-danger">
+        {{ form_errors(comment_form.content) }}
+    </div>
+
+</div>
+
+
+{{ form_widget(comment_form.submit, { 'attr': { 'class' : 'btn btn-primary col-12'}}) }}
+
+    {{ form_end(comment_form) }}

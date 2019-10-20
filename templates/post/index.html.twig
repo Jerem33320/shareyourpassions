@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts List{% endblock %}
+
+{% block header %}
+
+    {% block navbar %}
+
+        {% include 'navbar.html.twig' %}
+
+    {% endblock %}
+
+    <div class="jumbotron animsition animsition-link" {#data-animsition-out-duration="1000"#}>
+        <div class="container">
+            {% block headerContent %}
+                <h1> Share Your Passions</h1>
+            {% endblock %}
+        </div>
+    </div>
+
+    {% if app.user %}
+        <div class="container form-container animsition animsition-link" {#data-animsition-out-duration="2000"#}>
+            {% include 'post/form.html.twig' %}
+        </div>
+    {% else %}
+        <div class="card space-upbot-comment-card">
+            <div class="card-body">
+                <p class="card-text" style="color: orangered">Veuillez vous connecter pour pouvoir partager une Passion.</p>
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block body %}
+    <div class="container animsition animsition-link" {#data-animsition-out-duration="3000"#}>
+        <div class="row">
+            {% for post in posts %}
+                <div class="column">
+                    {% include 'post/card.html.twig' %}
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

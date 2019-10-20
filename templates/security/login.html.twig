@@ -1,0 +1,58 @@
+{% extends 'home.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block header %}
+
+    {{ parent() }}
+
+    <div class="jumbotron pad-btm">
+        <div class="container">
+            {% block headerContent %}
+                <h1> Share Your Passions</h1>
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container col-6">
+        <form method="post">
+            {% if error is defined and error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <h1 class="h3 mb-3 font-weight-normal">Se Connecter</h1><br>
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="text" name="username" id="inputUsername" class="form-control"
+                   placeholder="Votre Pseudo" required autofocus>
+            <br>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de Passe"
+                   required>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+
+            {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+            #}
+            <br>
+
+            <div>
+                <button class="btn btn-lg btn-primary col-4" type="submit" style="display: block; margin: 0 auto;">
+                    S'inscrire
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
